@@ -12,22 +12,21 @@
         exit(); 
     }
 
-    $query = "SELECT Username FROM Users WHERE Username = " . $username;
-
+    $query = "SELECT Username FROM Users WHERE Username = '" . $username . "'";
+	$result = $mysqli -> query($query);
 
     if($username == ""){
         echo "<p> Sorry. Username was not made. Go back and try again. </p>";
-    } else if($result = $mysqli -> query($query)) {
-        echo "<p> Sorry. This username already exists.";
-        $result -> free();
-    }else if($password == ""){
+    } else if($result -> num_rows != 0){
+		echo "<p> Username already exists.";
+	}else if($password == ""){
         echo "<p> Sorry. Password was not made. Go back and try again. </p>";
     } else {
         $this_id = rand(1000000, 9999999);
-        $query = "INSERT INTO Users (Username, Password, user_id) VALUES (" . $username . "," . $password . "," . $this_id . ")";
-        $result = $mysqli -> query($query);
+        $query = "INSERT INTO Users (Username, Password, user_id) VALUES ('" . $username . "','" . $password . "'," . $this_id . ");";
+        $mysqli -> query($query);
         echo "<p> Successfully made username and password. </p>";
-        $result -> free();
+        
     }
     $mysqli->close();
 
