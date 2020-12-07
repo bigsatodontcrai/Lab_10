@@ -18,7 +18,7 @@
         SELECT Users.Username, Posts.content
         FROM Users
         INNER JOIN Posts
-        ON user_id = author_id AND Username = ". $username."
+        ON user_id = author_id AND Username = '". $username."'
         ORDER BY Users.Username;
     ";
 

@@ -13,13 +13,13 @@
     }
 
     $num = count($content);
-    for($i = 0; i < $N; $i++){
+    for($i = 0; $i < $num; $i++){
         $query = "
             DELETE FROM Posts
-            WHERE content = ". $content[$i] ."
+            WHERE content = '". $content[$i] ."'
         ";
-        $result = $mysqli -> query($query);
-        $result -> free();
+        $mysqli -> query($query);
+        echo "<p> Deleted post.</p>";
     }
 
     $mysqli->close();

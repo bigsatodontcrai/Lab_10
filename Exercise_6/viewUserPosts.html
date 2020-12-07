@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="styles.css">
 <p>Create a post</p>
 
-<form action="viewUserPosts.php" method="post">
+<form action="viewUserPosts.php" method="post" id="thisform">
     <p>Username: </p>
-    <select id = "users">
-        <?php 
+    <select name ="username" id = "username" form="thisform">
+        <?php
             error_reporting(E_ALL); 
         ini_set("display_errors", 1);
     
@@ -20,7 +20,7 @@
         $query = "SELECT Username FROM Users WHERE user_id > 0";
         $result = $mysqli -> query($query);
         while ($row = $result -> fetch_assoc()){
-            echo "<option value = " . $row["Username"] . ">" . $row["Username"] . " name = "username"</option>";
+           echo "<option value = " . $row["Username"] . ">" . $row["Username"] . " </option>";
         }
 
         $result -> free();

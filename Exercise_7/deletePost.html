@@ -6,7 +6,6 @@
                 error_reporting(E_ALL); 
             ini_set("display_errors", 1);
     
-            $username = $_POST["username"];
     
 
             $mysqli = new mysqli("mysql.eecs.ku.edu", "suhaibansari", "oox7Ao9M", "suhaibansari");
@@ -25,8 +24,10 @@
 
             $result = $mysqli -> query($query);
             while ($row = $result -> fetch_assoc()){
-                echo "<input type=checkbox name=posts id=" . $row[" content"] . "> <label for = " . $row["content"] . "" .
-                    $row["content"] . "" . $row["Username"];
+                
+                echo "<input type=checkbox name=posts id=" . $row["content"] 
+                       . "<label for=" . $row["content"] . " >". $row["Username"] . ": '". $row["content"]. "</label>";
+                
             }
     
             $result -> free();
