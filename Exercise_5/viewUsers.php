@@ -15,4 +15,7 @@
         echo "<p>" . $row["Username"] . "</p>";
     }
 
+    $result -> free();
+    $mysqli -> close();
+
 ?>

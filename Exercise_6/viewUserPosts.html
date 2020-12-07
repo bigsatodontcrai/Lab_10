@@ -3,11 +3,31 @@
 <link rel="stylesheet" href="styles.css">
 <p>Create a post</p>
 
-<form action="createPost.php" method="post">
+<form action="viewUserPosts.php" method="post">
     <p>Username: </p>
     <select id = "users">
-        
+        <?php 
+            error_reporting(E_ALL); 
+        ini_set("display_errors", 1);
+    
+
+        $mysqli = new mysqli("mysql.eecs.ku.edu", "suhaibansari", "oox7Ao9M", "suhaibansari");
+        if ($mysqli->connect_errno) {
+            printf("Connect failed: %s\n", $mysqli->connect_error);
+            exit(); 
+        }
+
+        $query = "SELECT Username FROM Users WHERE user_id > 0";
+        $result = $mysqli -> query($query);
+        while ($row = $result -> fetch_assoc()){
+            echo "<option value = " . $row["Username"] . ">" . $row["Username"] . " name = "username"</option>";
+        }
+
+        $result -> free();
+        $mysqli -> close();
+        ?>
     </select>
+    <input type="submit">
 </form>
 
 </html>
